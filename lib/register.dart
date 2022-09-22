@@ -146,7 +146,7 @@ class _registerState extends State<register> {
 
                       });
                       var response = await Dio().post('https://mayurnda.000webhostapp.com/ecom/ecom_insert.php', data: formData);
-
+                      print(response.data);
 
                     }, child: Text("Register")),
                   ),
