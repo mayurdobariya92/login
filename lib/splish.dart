@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login/homepage.dart';
 import 'package:login/loginpage.dart';
+import 'package:login/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class splish extends StatefulWidget {
   const splish({Key? key}) : super(key: key);
@@ -14,16 +17,31 @@ class _splishState extends State<splish> {
     // TODO: implement initState
     super.initState();
 
-    godata();
+    goNext();
   }
 
-  godata() async {
-    await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacement(context, MaterialPageRoute(
-      builder: (context) {
-        return loginpage();
-      },
-    ));
+  goNext() async {
+    Utils.prefs = await SharedPreferences.getInstance();
+    bool loginstatus = Utils.prefs!.getBool("loginstatus")?? false;
+
+
+    if(loginstatus)
+      {
+        await Future.delayed(Duration(seconds: 3));
+        Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) {
+            return homepage();
+          },
+        ));
+      }
+    else {
+      await Future.delayed(Duration(seconds: 3));
+      Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) {
+          return loginpage();
+        },
+      ));
+    }
   }
 
   @override
