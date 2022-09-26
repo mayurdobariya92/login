@@ -19,7 +19,7 @@ class _loginpageState extends State<loginpage> {
 bool firstvalue =false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
